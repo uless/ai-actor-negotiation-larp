@@ -103,6 +103,10 @@ The current version uses Tilly Norwood and published reporting as a case for cla
 
 Review your institution's privacy rules before collecting student work. Delete classroom submissions according to your own retention policy.
 
+## Credits
+
+Designed and taught by Dr. Anqi Shao for MCOM 2010: AI in Media and Communication. Coding was completed with help from Claude Opus 5.5 and GPT-5.6 Sol.
+
 ## License
 
 MIT. See `LICENSE`.
