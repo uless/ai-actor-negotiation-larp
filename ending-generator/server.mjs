@@ -87,6 +87,6 @@ const server = http.createServer(async (req, res) => {
 
 const port = Number(process.env.PORT || 4174);
 server.listen(port, "127.0.0.1", () => {
-  const mode = process.env.ANTHROPIC_API_KEY ? "LIVE MODE" : "DEMO MODE";
+  const mode = process.env.LLM_API_KEY ? "LIVE MODE" : "DEMO MODE";
   console.log(`MCOM 2010 Deal Endings: http://127.0.0.1:${port} (${mode})`);
 });

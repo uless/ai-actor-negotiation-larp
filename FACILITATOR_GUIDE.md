@@ -8,14 +8,14 @@ Split the class into no more than three groups:
 2. The actors' union
 3. The AI company
 
-The question is whether a studio may cast the AI actor Tilly Norwood in a role that a human actor could play. The groups must negotiate five terms: role, consent, pay, credit, and telling the audience.
+The question is whether a studio may cast an AI actress in a role that a human actor could play. The groups must negotiate five terms: role, consent, pay, credit, and telling the audience.
 
 Students can use the supplied facts, find another example, or use AI to help search. Ask them to check the source before using an example in the negotiation.
 
 ## 60-minute version
 
 - 5 minutes: Put students into three groups and open the assigned role cards.
-- 10 minutes: Each group chooses its priorities and writes an opening offer for all five terms. The studio also chooses a genre and Tilly's role.
+- 10 minutes: Each group chooses its priorities and writes an opening offer for all five terms. The studio also chooses a genre and the AI actress's role.
 - 10 minutes: Each side reads its opening offers.
 - 10 minutes: The groups bargain across the five terms.
 - 5 minutes: Read the news flash. Reopen role and pay.
@@ -25,7 +25,7 @@ Students can use the supplied facts, find another example, or use AI to help sea
 
 ## News flash
 
-> Test audiences loved Tilly. The studio now wants her as the lead in the sequel. Does your deal still work? Negotiate the role and the pay again.
+> Test audiences loved the AI actress. The studio now wants her as the lead in the sequel. Does your deal still work? Negotiate the role and the pay again.
 
 Do not show the news flash before the first bargain. The point is to test whether the original agreement still works when the studio asks for more.
 

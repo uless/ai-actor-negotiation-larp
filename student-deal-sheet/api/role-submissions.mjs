@@ -50,7 +50,7 @@ export function validate(body) {
     groupNames: clean(body.groupNames, 160),
     caseId: clean(body.caseId, 1).toUpperCase(),
     filmGenre: clean(body.filmGenre, 120),
-    tillyRole: clean(body.tillyRole, 120),
+    aiActressRole: clean(body.aiActressRole, 120),
     extraEvidence: clean(body.extraEvidence, 450),
     openingOffers: cleanTerms(body.openingOffers, 260),
     finalPositions: cleanTerms(body.finalPositions, 500),
@@ -66,14 +66,14 @@ export function validate(body) {
     throw new Error("The deal sheet is too long. Shorten one or more answers.");
   }
   if (Boolean(data.submissionId) !== Boolean(data.editToken)) throw new Error("The saved edit information is incomplete.");
-  if (data.caseId === "A" && (!data.filmGenre || !data.tillyRole)) {
-    throw new Error("Choose the movie genre and Tilly's role before submitting.");
+  if (data.caseId === "A" && (!data.filmGenre || !data.aiActressRole)) {
+    throw new Error("Choose the movie genre and the AI actress's role before submitting.");
   }
 
   const openingRecord = {
     ...data.openingOffers,
     filmGenre: data.filmGenre,
-    tillyRole: data.tillyRole,
+    aiActressRole: data.aiActressRole,
   };
   if (JSON.stringify(openingRecord).length > 1800) {
     throw new Error("The deal sheet is too long. Shorten a few answers and try again.");
@@ -90,7 +90,7 @@ function databaseRow(data) {
     what_happened: JSON.stringify({
       ...data.openingOffers,
       filmGenre: data.filmGenre,
-      tillyRole: data.tillyRole,
+      aiActressRole: data.aiActressRole,
     }),
     first_reaction: data.extraEvidence || noExtraEvidence,
     question_answers: JSON.stringify(data.finalPositions),
@@ -108,7 +108,7 @@ export function publicRow(row) {
     group_names: row.group_names,
     case_id: row.case_id,
     film_genre: clean(opening.filmGenre, 120),
-    tilly_role: clean(opening.tillyRole, 120),
+    ai_actress_role: clean(opening.aiActressRole, 120),
     extra_evidence: [noExtraEvidence, "five-term-deal-sheet"].includes(row.first_reaction)
       ? ""
       : clean(row.first_reaction, 450),
@@ -130,7 +130,7 @@ function csv(rows) {
     ["Group members", "group_names"],
     ["Side", "case_id"],
     ["Film genre", "film_genre"],
-    ["Tilly's role", "tilly_role"],
+    ["AI actress's role", "ai_actress_role"],
     ["Extra evidence", "extra_evidence"],
     ...termKeys.flatMap((key) => [
       [`${key} opening offer`, `opening_${key}`],

@@ -31,12 +31,12 @@ try {
   await page.screenshot({ path: path.join(temp, "mcom2010-week7-student-deal.png") });
 
   await page.locator("#filmGenre").fill("Mystery comedy");
-  await page.locator("#tillyRole").fill("The detective's rival");
+  await page.locator("#aiActressRole").fill("The detective's rival");
   await page.locator("#submitButton").click();
   assert.match(await page.locator("#submitNotice").textContent(), /Complete both boxes for/);
 
   await openRole(page, "B", "You are the actors' union (SAG-AFTRA)", /before your union says yes/);
-  await openRole(page, "C", "You are the AI company that made Tilly", /screen credit could help/);
+  await openRole(page, "C", "You are the company that made the AI actress", /screen credit could help/);
 
   const mobile = await browser.newPage({ viewport: { width: 390, height: 844 } });
   await openRole(mobile, "B", "You are the actors' union (SAG-AFTRA)", /before your union says yes/);

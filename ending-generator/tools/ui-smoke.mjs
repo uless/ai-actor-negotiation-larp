@@ -8,7 +8,7 @@ if (!teacherCode) throw new Error("Set TEACHER_CODE before running the browser s
 const expectedTitles = [
   "Humans Only",
   "Lights, Camera, Strike",
-  "Tilly, With Conditions",
+  "AI Actress, With Conditions",
   "Open Book",
   "Back to the Table"
 ];
@@ -21,7 +21,7 @@ try {
   await page.locator("#loginForm button").click();
   await page.locator("#entryScreen").waitFor({ state: "visible" });
   assert.equal(await page.locator("#demoLabel").isVisible(), true);
-  assert.match(await page.locator("#modelName").textContent(), /claude-opus-5-5/);
+  assert.match(await page.locator("#modelName").textContent(), /Built-in demo rules/);
   await page.screenshot({ path: path.join(process.env.TEMP || process.cwd(), "mcom2010-week7-entry.png") });
 
   for (let index = 0; index < expectedTitles.length; index += 1) {

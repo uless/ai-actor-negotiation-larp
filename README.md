@@ -1,10 +1,10 @@
-# The Tilly Deal
+# The AI Actress Deal
 
-The Tilly Deal is a classroom live action role-playing game about AI actors, labor, consent, and disclosure. Students play three sides in a film negotiation:
+The AI Actress Deal is a classroom live action role-playing game about AI performers, labor, consent, and disclosure. Students play three sides in a film negotiation:
 
-- a studio that wants to cast the AI actor Tilly Norwood
+- a studio that wants to cast an AI actress
 - an actors' union protecting human performers
-- the AI company that made Tilly
+- the company that made the AI actress
 
 The groups negotiate five terms: role, consent, pay, credit, and telling the audience. A news flash changes the stakes midway through the game. The instructor then enters the final deal into a second app, which matches it to one of five video game style endings.
 
@@ -16,7 +16,7 @@ The groups negotiate five terms: role, consent, pay, credit, and telling the aud
 
 `student-deal-sheet/` is the student app. It gives each group a role card and a five-term deal sheet. Drafts stay in the browser. Submitted work goes to Supabase, and the protected instructor dashboard at `/teach` can export a CSV file.
 
-`ending-generator/` is the instructor app. It takes the final deal and asks Anthropic to select one of five fixed endings. The model can explain the match and write a short epilogue, but it cannot invent new endings or change the rules. Without an API key, this app runs in deterministic demo mode.
+`ending-generator/` is the instructor app. It takes the final deal and asks a language model to select one of five fixed endings. OpenAI and Anthropic are supported out of the box. The model can explain the match and write a short epilogue, but it cannot invent new endings or change the rules. Without an API key, this app runs in deterministic demo mode.
 
 `FACILITATOR_GUIDE.md` contains a 60-minute classroom plan and the news flash.
 
@@ -29,7 +29,7 @@ You need:
 - a GitHub account
 - a Vercel account
 - a Supabase project for student submissions
-- an Anthropic API key if you want model-selected endings
+- an OpenAI or Anthropic API key if you want model-selected endings
 
 Every secret belongs in the deployment environment, never in the repository. The included `.env.example` files contain names and placeholders only.
 
@@ -53,12 +53,14 @@ The Supabase service role key is server-only. Do not rename it with a `NEXT_PUBL
 1. Import this repository into Vercel as another project.
 2. Set the Vercel Root Directory to `ending-generator`.
 3. Add:
-   - `ANTHROPIC_API_KEY`
    - `TEACHER_CODE`
-   - `ANTHROPIC_MODEL` if you want to override the default model
+   - `LLM_PROVIDER` (`openai` or `anthropic`)
+   - `LLM_API_KEY`
+   - `LLM_MODEL`
+   - `LLM_BASE_URL` only if you use a compatible endpoint or proxy
 4. Deploy.
 
-If `ANTHROPIC_API_KEY` is absent, the ending generator uses its built-in demo rules. The API key stays on the server. The app does not save or log the deal text.
+If `LLM_API_KEY` is absent, the ending generator uses its built-in demo rules. The API key stays on the server. The app does not save or log the deal text.
 
 ## Run locally
 
@@ -84,13 +86,13 @@ npm test
 npm run dev
 ```
 
-Open `http://127.0.0.1:4174`. You can omit the Anthropic key to rehearse in demo mode.
+Open `http://127.0.0.1:4174`. You can omit the model API key to rehearse in demo mode.
 
 ## Customize it
 
 The role cards and sources are in `student-deal-sheet/assets/role-deal-app.js`. The five endings, matching rules, questions, and model prompt are in `ending-generator/lib/core.mjs`. Change the course title and footer in each `index.html` file.
 
-The current version uses Tilly Norwood and published reporting as a case for classroom discussion. It is an independent educational project and is not affiliated with Tilly Norwood, Particle6, SAG-AFTRA, Anthropic, Supabase, or Vercel.
+The public version uses a fictional, unnamed AI actress so instructors can adapt the case to their own course. It is an independent educational project and is not affiliated with SAG-AFTRA, OpenAI, Anthropic, Supabase, or Vercel.
 
 ## Privacy and security
 

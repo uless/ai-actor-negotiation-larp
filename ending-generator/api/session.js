@@ -1,5 +1,5 @@
 import { requireTeacherCode } from "../lib/auth.mjs";
-import { DEFAULT_MODEL } from "../lib/core.mjs";
+import { getLlmConfig } from "../lib/core.mjs";
 import { PublicError } from "../lib/errors.mjs";
 
 function send(res, status, payload) {
@@ -16,10 +16,12 @@ export default async function handler(req, res) {
   }
   try {
     requireTeacherCode(req.body?.teacherCode, process.env);
+    const config = getLlmConfig(process.env);
     return send(res, 200, {
       authenticated: true,
-      model: String(process.env.ANTHROPIC_MODEL || DEFAULT_MODEL).trim(),
-      demo: !process.env.ANTHROPIC_API_KEY
+      model: config.model,
+      provider: config.provider,
+      demo: config.demo
     });
   } catch (error) {
     const known = error instanceof PublicError;

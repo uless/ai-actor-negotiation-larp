@@ -12,16 +12,16 @@ const ENDINGS = [
     id: "studio_takes_all",
     number: 2,
     title: "Lights, Camera, Strike",
-    tagline: "Tilly got the lead. The actors got nothing. Then the actors walked out.",
+    tagline: "The AI actress got the lead. The actors got nothing. Then the actors walked out.",
     color: "#D6006E",
     realWorld: "When talks with studios failed, workers went on strike: writers and actors in 2023, and video game performers for 11 months, from July 2024 to July 2025.",
     question: "What does the union do next?"
   },
   {
-    id: "tilly_with_conditions",
+    id: "ai_actress_with_conditions",
     number: 3,
-    title: "Tilly, With Conditions",
-    tagline: "Tilly got a small part, with a rule on every line of the deal.",
+    title: "AI Actress, With Conditions",
+    tagline: "The AI actress got a small part, with a rule on every line of the deal.",
     color: "#F7B801",
     realWorld: "Your deal is close to the real one.",
     question: "Is your rule stricter or looser than the real one?"
@@ -30,10 +30,10 @@ const ENDINGS = [
     id: "open_book",
     number: 4,
     title: "Open Book",
-    tagline: "Tilly got a bigger part. Her makers had to say how she was made.",
+    tagline: "The AI actress got a bigger part. Her makers had to say how she was made.",
     color: "#9B8CFF",
     realWorld: "Next week, we look at training data and consent.",
-    question: "How would actors know that their work trained Tilly?"
+    question: "How would actors know that their work trained the AI actress?"
   },
   {
     id: "back_to_table",
@@ -56,8 +56,8 @@ const SAMPLE_DEALS = [
   {
     id: "humans_only",
     overallResult: "Deal",
-    role: "Tilly has no role. A human actor plays the part.",
-    consent: "Not needed, because Tilly is not in the film.",
+    role: "The AI actress has no role. A human actor plays the part.",
+    consent: "Not needed, because the AI actress is not in the film.",
     pay: "The studio pays the human actor.",
     credit: "The human actor's name only.",
     audience: "Nothing to tell.",
@@ -66,32 +66,32 @@ const SAMPLE_DEALS = [
   {
     id: "studio_takes_all",
     overallResult: "Deal",
-    role: "Tilly is the lead.",
+    role: "The AI actress is the lead.",
     consent: "No permission needed. The studio owns the film.",
     pay: "The fee goes to the AI company only.",
-    credit: "Tilly Norwood.",
+    credit: "AI performer.",
     audience: "A small line at the end of the credits.",
-    newsFlash: "Tilly stays the lead in the sequel."
+    newsFlash: "The AI actress stays the lead in the sequel."
   },
   {
-    id: "tilly_with_conditions",
+    id: "ai_actress_with_conditions",
     overallResult: "Deal",
     role: "A supporting role, less than 10 minutes on screen.",
     consent: "The union must approve.",
-    pay: "10 percent of Tilly's fee goes to an actors' fund.",
-    credit: "Tilly Norwood (AI performer).",
+    pay: "10 percent of the AI actress's fee goes to an actors' fund.",
+    credit: "AI actress (AI performer).",
     audience: "A label on the poster and at the start of the film.",
-    newsFlash: "Tilly stays in a supporting role. A human plays the lead."
+    newsFlash: "The AI actress stays in a supporting role. A human plays the lead."
   },
   {
     id: "open_book",
     overallResult: "Deal",
     role: "The lead role in the sequel.",
-    consent: "The actors whose work trained Tilly must agree.",
-    pay: "Actors get paid every time Tilly is used.",
-    credit: "Tilly Norwood, AI performer.",
+    consent: "The actors whose work trained the AI actress must agree.",
+    pay: "Actors get paid every time the AI actress is used.",
+    credit: "AI actress, AI performer.",
     audience: "A label at the start of the film.",
-    newsFlash: "The union accepted the lead because the AI company published the material used to train Tilly."
+    newsFlash: "The union accepted the lead because the AI company published the material used to train the AI actress."
   },
   {
     id: "back_to_table",
@@ -431,7 +431,7 @@ els.loginForm.addEventListener("submit", async (event) => {
     const session = await api("/api/session", { teacherCode });
     state.teacherCode = teacherCode;
     state.session = session;
-    els.modelName.textContent = `Model: ${session.model}`;
+    els.modelName.textContent = session.demo ? "Built-in demo rules" : `Model: ${session.provider} / ${session.model}`;
     els.demoLabel.hidden = !session.demo;
     els.demoSamples.hidden = !session.demo;
     showScreen(els.entryScreen);

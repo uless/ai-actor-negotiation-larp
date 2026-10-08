@@ -51,7 +51,7 @@ function submissionContext(row) {
   const details = [];
   if (row.case_id === "A") {
     details.push(["Movie genre", row.film_genre || "No response"]);
-    details.push(["Tilly's role", row.tilly_role || "No response"]);
+    details.push(["AI actress's role", row.ai_actress_role || "No response"]);
   }
   if (row.extra_evidence) {
     details.push(["One more example for this side", row.extra_evidence]);

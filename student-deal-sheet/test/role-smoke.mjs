@@ -12,7 +12,7 @@ const supabase = await readFile(new URL("../lib/supabase.mjs", import.meta.url),
 
 for (const id of [
   "setupForm", "casePicker", "workspace", "caseIntro", "roleBrief", "caseFacts",
-  "studioPlan", "filmGenre", "tillyRole", "extraEvidence",
+  "studioPlan", "filmGenre", "aiActressRole", "extraEvidence",
   "sideName", "dealTerms", "roleOpening", "roleFinal", "consentOpening", "consentFinal",
   "payOpening", "payFinal", "creditOpening", "creditFinal", "audienceOpening", "audienceFinal", "submitButton"
 ]) {
@@ -22,17 +22,17 @@ for (const id of [
 for (const phrase of [
   "You are the studio",
   "You are the actors' union (SAG-AFTRA)",
-  "You are the AI company that made Tilly",
-  "Choose the genre and the role you want Tilly to play.",
+  "You are the company that made the AI actress",
+  "Choose the genre and the role you want the AI actress to play.",
   "Decide what the studio and the AI company must agree to before your union says yes.",
   "A real role and a screen credit could help you get the next studio interested too.",
-  "Tilly in your film, at a cost that you can afford.",
+  "The AI actress in your film, at a cost that you can afford.",
   "No AI actor is made from an actor's work without that actor's consent.",
-  "A promise to say what material was used to train Tilly",
-  "trained on the work of countless professional performers.",
-  "I see AI not as a replacement for people, but as a new tool, a new paintbrush.",
+  "A promise to say what material was used to train her",
+  "requires informed consent and compensation",
+  "Lionsgate announced a partnership with Runway",
   "The Hollywood Reporter interview with Tyler Perry, February 2024, as reported by NPR, February 28, 2024.",
-  "Euronews, July 7, 2026."
+  "Lionsgate and Runway announcement, September 2024."
 ]) {
   assert.ok(js.includes(phrase), `Missing content: ${phrase}`);
 }
@@ -41,18 +41,17 @@ for (const phrase of [
   "Choose your movie",
   "Build your case",
   "think of another example, search for one, or use AI to find one that supports your side",
-  "Role: How big a part can Tilly play?",
+  "Role: How big a part can the AI actress play?",
   "Consent: Whose permission is needed?",
   "Pay: Who gets paid, and how?",
   "Credit: Whose name goes in the credits?",
-  "Telling the audience: Does the film say Tilly is AI, and where?",
+  "Telling the audience: Does the film say the actress is AI, and where?",
   "Complete both boxes for all five terms."
 ]) {
   assert.ok(html.includes(phrase), `Missing rule-sheet text: ${phrase}`);
 }
 
 for (const removed of [
-  "A studio is making a film. It wants an AI actor, Tilly Norwood, in a role that a human actor could play.",
   "Negotiate with the other two groups",
   "Round 1: opening offers.",
   "Round 2: answer and bargain.",
@@ -99,7 +98,7 @@ const checked = validate({
   groupNames: "Ava and Eli",
   caseId: "A",
   filmGenre: "Mystery comedy",
-  tillyRole: "The detective's rival",
+  aiActressRole: "The detective's rival",
   extraEvidence: "A checked example from another production.",
   openingOffers: completeTerms,
   finalPositions: Object.fromEntries(Object.entries(completeTerms).map(([key, value]) => [key, `Final ${value}`]))
@@ -108,7 +107,7 @@ assert.equal(checked.openingOffers.role, "Opening role term");
 assert.equal(checked.filmGenre, "Mystery comedy");
 assert.throws(
   () => validate({ groupNames: "Ava", caseId: "A", openingOffers: completeTerms, finalPositions: completeTerms }),
-  /movie genre and Tilly's role/
+  /movie genre and the AI actress's role/
 );
 assert.throws(
   () => validate({ groupNames: "Ava", caseId: "B", openingOffers: completeTerms, finalPositions: { ...completeTerms, pay: "" } }),
@@ -120,7 +119,7 @@ const decoded = publicRow({
   code: "ABC123",
   group_names: "Ava and Eli",
   case_id: "A",
-  what_happened: JSON.stringify({ ...completeTerms, filmGenre: "Mystery comedy", tillyRole: "The detective's rival" }),
+  what_happened: JSON.stringify({ ...completeTerms, filmGenre: "Mystery comedy", aiActressRole: "The detective's rival" }),
   first_reaction: "A checked example from another production.",
   question_answers: JSON.stringify(Object.fromEntries(Object.entries(completeTerms).map(([key, value]) => [key, `Final ${value}`]))),
   created_at: "2026-10-07T00:00:00.000Z",
@@ -129,7 +128,7 @@ const decoded = publicRow({
 assert.equal(decoded.opening_offers.audience, "Opening audience term");
 assert.equal(decoded.final_positions.pay, "Final Opening pay term");
 assert.equal(decoded.film_genre, "Mystery comedy");
-assert.equal(decoded.tilly_role, "The detective's rival");
+assert.equal(decoded.ai_actress_role, "The detective's rival");
 assert.equal(decoded.extra_evidence, "A checked example from another production.");
 
 console.log("Role negotiation smoke checks passed");
