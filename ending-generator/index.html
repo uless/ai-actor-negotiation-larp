@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MCOM 2010 Week 7 negotiation ending app">
+  <meta name="theme-color" content="#0F172A">
+  <title>Deal endings | MCOM 2010</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main>
+    <section id="loginScreen" class="login-screen screen">
+      <form id="loginForm" class="login-panel">
+        <h1>Deal endings</h1>
+        <label for="teacherCode">Teacher code</label>
+        <input id="teacherCode" type="password" maxlength="80" autocomplete="current-password" required>
+        <p id="loginError" class="error" role="alert" hidden></p>
+        <button class="primary" type="submit">Open the app</button>
+      </form>
+    </section>
+
+    <section id="entryScreen" class="entry-screen screen" hidden>
+      <div class="entry-shell">
+        <h1>Type the final deal</h1>
+        <form id="dealForm">
+          <label class="deal-name" for="dealName">Deal name
+            <input id="dealName" maxlength="200" placeholder="Section 1">
+          </label>
+
+          <fieldset class="overall-field">
+            <legend>Overall result</legend>
+            <div class="segmented" id="overallResult">
+              <button type="button" data-result="Deal" aria-pressed="true">Deal</button>
+              <button type="button" data-result="No deal" aria-pressed="false">No deal</button>
+            </div>
+          </fieldset>
+
+          <div id="termFields" class="term-fields">
+            <article class="term-row" data-term="role">
+              <label for="role">Role: What role can Tilly play?</label>
+              <button class="agreement-toggle" type="button" aria-pressed="true">Agreed</button>
+              <textarea id="role" rows="3" maxlength="4000"></textarea>
+            </article>
+            <article class="term-row" data-term="consent">
+              <label for="consent">Consent: Whose permission is needed?</label>
+              <button class="agreement-toggle" type="button" aria-pressed="true">Agreed</button>
+              <textarea id="consent" rows="3" maxlength="4000"></textarea>
+            </article>
+            <article class="term-row" data-term="pay">
+              <label for="pay">Pay: Who gets paid, and how?</label>
+              <button class="agreement-toggle" type="button" aria-pressed="true">Agreed</button>
+              <textarea id="pay" rows="3" maxlength="4000"></textarea>
+            </article>
+            <article class="term-row" data-term="credit">
+              <label for="credit">Credit: What name goes in the credits?</label>
+              <button class="agreement-toggle" type="button" aria-pressed="true">Agreed</button>
+              <textarea id="credit" rows="3" maxlength="4000"></textarea>
+            </article>
+            <article class="term-row" data-term="audience">
+              <label for="audience">Telling the audience: Must the film say that Tilly is AI? Where?</label>
+              <button class="agreement-toggle" type="button" aria-pressed="true">Agreed</button>
+              <textarea id="audience" rows="3" maxlength="4000"></textarea>
+            </article>
+          </div>
+
+          <label for="newsFlash">What changed after the news flash?
+            <textarea id="newsFlash" rows="4" maxlength="4000"></textarea>
+          </label>
+
+          <div class="submit-row">
+            <button id="showEndingButton" class="primary large" type="submit">Show the ending</button>
+            <span id="characterCount">0 / 4,000</span>
+          </div>
+          <p id="dealError" class="error" role="alert" hidden></p>
+        </form>
+
+        <section class="manual-section">
+          <h2>Pick an ending yourself</h2>
+          <div id="manualEndings" class="ending-button-row"></div>
+        </section>
+
+        <section id="demoSamples" class="demo-samples" hidden>
+          <h2>Sample deals</h2>
+          <div id="sampleButtons" class="sample-button-row"></div>
+        </section>
+
+        <footer id="modelFooter">
+          <span id="modelName"></span>
+          <span id="demoLabel" hidden>Demo</span>
+        </footer>
+      </div>
+    </section>
+
+    <section id="endingScreen" class="ending-screen screen" tabindex="0" hidden>
+      <button id="changeEndingButton" class="change-ending" type="button">Change ending</button>
+      <div id="endingStage" class="ending-stage">
+        <section id="endingIntro" class="ending-block">
+          <p id="closestLabel" class="closest-label" hidden>Closest ending</p>
+          <p id="endingNumber" class="ending-number"></p>
+          <h1 id="endingTitle"></h1>
+          <p id="endingTagline" class="tagline"></p>
+        </section>
+
+        <section id="epilogueBlock" class="ending-block" hidden>
+          <p id="epilogueText" class="epilogue"></p>
+        </section>
+
+        <section id="scoresBlock" class="ending-block" hidden>
+          <h2>What each side got</h2>
+          <div id="scoreBars" class="score-bars"></div>
+        </section>
+
+        <section id="reasonsBlock" class="ending-block" hidden>
+          <h2>Why this ending</h2>
+          <div id="reasonList" class="reason-list"></div>
+        </section>
+
+        <section id="realWorldBlock" class="ending-block" hidden>
+          <h2>In the real world</h2>
+          <p>In June 2026, SAG-AFTRA members approved a new four-year contract. Under it, studios use an AI performer in place of a human only if it adds "significant additional value." The principle of the contract is "strongly favoring human performances."</p>
+          <p id="realWorldEnding"></p>
+        </section>
+
+        <section id="questionsBlock" class="ending-block" hidden>
+          <h2>Questions</h2>
+          <ol id="questionList"></ol>
+        </section>
+      </div>
+      <div id="stageProgress" class="stage-progress" aria-hidden="true"></div>
+    </section>
+
+    <section id="collectionScreen" class="collection-screen screen" hidden>
+      <div class="collection-shell">
+        <h1 id="collectionHeading">Endings found: 0 of 5</h1>
+        <div id="collectionCards" class="collection-cards"></div>
+        <div class="collection-actions">
+          <button id="showAllButton" class="primary" type="button">Show all endings</button>
+          <button id="startAgainButton" class="secondary" type="button">Start again</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="endingPicker">
+    <form method="dialog">
+      <button class="dialog-close" value="cancel" aria-label="Close">×</button>
+      <h2>Change ending</h2>
+      <div id="dialogEndings" class="ending-button-row"></div>
+    </form>
+  </dialog>
+
+  <script src="/assets/app.js" defer></script>
+</body>
+</html>

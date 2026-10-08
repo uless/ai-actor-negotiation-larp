@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="theme-color" content="#14213d">
+  <title>Week 7 role negotiation | MCOM 2010</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="course-header">
+    <span>MCOM 2010</span>
+    <span>Instructor view</span>
+  </header>
+
+  <main class="teacher-shell">
+    <section id="loginPanel" class="panel teacher-login">
+      <p class="course-line">Instructor access</p>
+      <h1>Week 7 role negotiation</h1>
+      <form id="loginForm">
+        <label for="teacherPassword">Password
+          <input id="teacherPassword" type="password" autocomplete="current-password" required>
+        </label>
+        <p id="loginError" class="notice error" role="alert" hidden></p>
+        <button class="primary" type="submit">Open submissions</button>
+      </form>
+    </section>
+
+    <section id="dashboard" hidden>
+      <div class="teacher-toolbar">
+        <div>
+          <p class="course-line">Instructor view</p>
+          <h1>Week 7 role negotiation</h1>
+        </div>
+        <div class="toolbar-actions">
+          <button id="refreshButton" class="secondary" type="button">Refresh</button>
+          <button id="exportButton" class="secondary" type="button">Export CSV</button>
+          <button id="logoutButton" class="text-button" type="button">Sign out</button>
+        </div>
+      </div>
+
+      <div id="dashboardSummary" class="dashboard-summary" aria-label="Submission counts"></div>
+      <p id="dashboardNotice" class="notice error" role="alert" hidden></p>
+      <div id="submissionList" class="submission-list"></div>
+    </section>
+  </main>
+
+  <footer>
+    <span>MCOM 2010 · AI in Media and Communication</span>
+    <span>Dr. Anqi Shao</span>
+  </footer>
+
+  <script src="/assets/role-teach.js" defer></script>
+</body>
+</html>

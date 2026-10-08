@@ -1,0 +1,14 @@
+{
+  "name": "ai-actor-negotiation-ending-generator",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.mjs",
+    "check": "node --check assets/app.js && node --check api/ending.js && node --check api/session.js && node --check lib/auth.mjs && node --check lib/core.mjs && node --check lib/errors.mjs && node --check server.mjs && node --check tools/ui-smoke.mjs",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": "24.x"
+  }
+}

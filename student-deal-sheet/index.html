@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="MCOM 2010 Week 7 role negotiation">
+  <meta name="theme-color" content="#14213d">
+  <title>Week 7 role negotiation | MCOM 2010</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main>
+    <section id="setupPanel" class="panel setup-panel">
+      <h1>MCOM 2010 · Week 7 role negotiation</h1>
+
+      <form id="setupForm">
+        <label for="groupNames">Group members
+          <input id="groupNames" maxlength="160" autocomplete="off" placeholder="First names only" required>
+        </label>
+
+        <fieldset>
+          <legend>Your assigned side</legend>
+          <div class="case-picker" id="casePicker">
+            <button type="button" data-case="A" aria-pressed="false">
+              <span class="case-letter">A</span>
+              <span>The studio</span>
+            </button>
+            <button type="button" data-case="B" aria-pressed="false">
+              <span class="case-letter">B</span>
+              <span>The actors' union</span>
+            </button>
+            <button type="button" data-case="C" aria-pressed="false">
+              <span class="case-letter">C</span>
+              <span>The AI company</span>
+            </button>
+          </div>
+        </fieldset>
+
+        <p id="setupError" class="notice error" role="alert" hidden></p>
+        <button class="primary start-button" type="submit">Open role card</button>
+      </form>
+
+      <aside id="savedWork" class="saved-work" hidden>
+        <div>
+          <strong>Continue your saved response?</strong>
+          <span id="savedWorkSummary"></span>
+        </div>
+        <button id="continueButton" class="secondary" type="button">Continue</button>
+      </aside>
+    </section>
+
+    <section id="workspace" hidden>
+      <div class="workspace-toolbar">
+        <button id="changeCaseButton" class="text-button" type="button">Change group or side</button>
+      </div>
+
+      <section id="caseSection" class="panel case-panel activity-section">
+        <p id="caseHeader" class="case-header-line"></p>
+        <h1 id="caseTitle"></h1>
+        <p id="caseIntro" class="case-intro"></p>
+        <div id="roleBrief" class="role-brief"></div>
+
+        <section id="studioPlan" class="studio-plan" hidden>
+          <h2>Choose your movie</h2>
+          <div>
+            <label for="filmGenre">Genre
+              <input id="filmGenre" maxlength="120" placeholder="Comedy, horror, science fiction...">
+            </label>
+            <label for="tillyRole">The role you want Tilly to play
+              <input id="tillyRole" maxlength="120" placeholder="Lead, supporting character, background role...">
+            </label>
+          </div>
+        </section>
+
+        <section class="facts-section">
+          <h2>Build your case</h2>
+          <p class="evidence-instruction">Start with the two facts below. Then think of another example, search for one, or use AI to find one that supports your side. Check where it came from before you use it.</p>
+          <ul id="caseFacts" class="case-facts"></ul>
+          <label class="extra-evidence" for="extraEvidence">One more example that supports your side
+            <textarea id="extraEvidence" rows="3" maxlength="450" placeholder="Write the example and where you found it."></textarea>
+          </label>
+        </section>
+        <details class="sources">
+          <summary>Sources</summary>
+          <div id="caseSources"></div>
+        </details>
+      </section>
+
+      <section id="answerSection" class="answer-section" aria-label="Deal sheet">
+        <p class="answer-sheet-header">MCOM 2010 · Week 7 · Deal sheet</p>
+
+        <div class="rule-side">Our side: <strong id="sideName"></strong></div>
+
+        <div class="deal-column-headings" aria-hidden="true">
+          <span>Term</span>
+          <span>Our opening offer</span>
+          <span>The final deal, or each side's position</span>
+        </div>
+
+        <div id="dealTerms" class="deal-terms">
+          <article class="panel deal-term" data-term="role">
+            <div class="term-heading"><span>1</span><h2>Role: How big a part can Tilly play?</h2></div>
+            <label for="roleOpening"><span>Our opening offer</span><textarea id="roleOpening" rows="4" maxlength="260"></textarea></label>
+            <label for="roleFinal"><span>The final deal, or each side's position</span><textarea id="roleFinal" rows="4" maxlength="500"></textarea></label>
+          </article>
+          <article class="panel deal-term" data-term="consent">
+            <div class="term-heading"><span>2</span><h2>Consent: Whose permission is needed?</h2></div>
+            <label for="consentOpening"><span>Our opening offer</span><textarea id="consentOpening" rows="4" maxlength="260"></textarea></label>
+            <label for="consentFinal"><span>The final deal, or each side's position</span><textarea id="consentFinal" rows="4" maxlength="500"></textarea></label>
+          </article>
+          <article class="panel deal-term" data-term="pay">
+            <div class="term-heading"><span>3</span><h2>Pay: Who gets paid, and how?</h2></div>
+            <label for="payOpening"><span>Our opening offer</span><textarea id="payOpening" rows="4" maxlength="260"></textarea></label>
+            <label for="payFinal"><span>The final deal, or each side's position</span><textarea id="payFinal" rows="4" maxlength="500"></textarea></label>
+          </article>
+          <article class="panel deal-term" data-term="credit">
+            <div class="term-heading"><span>4</span><h2>Credit: Whose name goes in the credits?</h2></div>
+            <label for="creditOpening"><span>Our opening offer</span><textarea id="creditOpening" rows="4" maxlength="260"></textarea></label>
+            <label for="creditFinal"><span>The final deal, or each side's position</span><textarea id="creditFinal" rows="4" maxlength="500"></textarea></label>
+          </article>
+          <article class="panel deal-term" data-term="audience">
+            <div class="term-heading"><span>5</span><h2>Telling the audience: Does the film say Tilly is AI, and where?</h2></div>
+            <label for="audienceOpening"><span>Our opening offer</span><textarea id="audienceOpening" rows="4" maxlength="260"></textarea></label>
+            <label for="audienceFinal"><span>The final deal, or each side's position</span><textarea id="audienceFinal" rows="4" maxlength="500"></textarea></label>
+          </article>
+        </div>
+      </section>
+
+      <section id="submitSection" class="panel submit-panel activity-section">
+        <div>
+          <h2>Send your deal sheet to the instructor</h2>
+          <p>Complete both boxes for all five terms.</p>
+        </div>
+        <div class="submit-actions">
+          <button id="submitButton" class="primary" type="button">Submit deal sheet</button>
+          <span id="saveStatus" class="save-status" role="status">Draft saved in this browser</span>
+        </div>
+        <p id="submitNotice" class="notice" role="status" hidden></p>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    <span>MCOM 2010 · AI in Media and Communication</span>
+    <span>Dr. Anqi Shao · Vibe-coded with GPT-5.6 Sol</span>
+  </footer>
+
+  <script src="/assets/role-deal-app.js" defer></script>
+</body>
+</html>

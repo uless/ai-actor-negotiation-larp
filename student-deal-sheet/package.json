@@ -1,0 +1,14 @@
+{
+  "name": "ai-actor-negotiation-student-app",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.mjs",
+    "check": "node --check assets/role-deal-app.js && node --check assets/role-teach.js && node --check api/health.mjs && node --check api/role-submissions.mjs && node --check api/teacher-login.mjs && node --check api/teacher-logout.mjs && node --check lib/auth.mjs && node --check lib/supabase.mjs && node --check server.mjs && node --check tools/role-ui-smoke.mjs",
+    "test": "node test/role-smoke.mjs"
+  },
+  "engines": {
+    "node": "24.x"
+  }
+}
